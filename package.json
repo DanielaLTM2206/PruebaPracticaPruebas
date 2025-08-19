@@ -1,0 +1,22 @@
+{
+  "name": "tituanadaniela_pruebapractica",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.33.0",
+    "jest": "^30.0.5"
+  },
+  "type": "module"
+}
