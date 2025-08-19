@@ -1,4 +1,4 @@
-const toCelsius = require('../src/utils/toCelsius');
+const toCelsius = require('../src/utils/toCelcius');
 
 describe('toCelsius', () => {
 	it('convierte 32°F a 0.0°C', () => {
@@ -19,4 +19,3 @@ describe('toCelsius', () => {
 		expect(() => toCelsius(Infinity)).toThrow(TypeError);
 	});
 });
-const toCelsius = require('../src/utils/toCelcius');

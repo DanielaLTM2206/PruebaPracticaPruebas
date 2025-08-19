@@ -1,4 +1,4 @@
-const toFahrenheit = require('../src/utils/toFahrenheit');
+const toFahrenheit = require('../src/utils/toFarenheit');
 
 describe('toFahrenheit', () => {
   it('convierte 0°C a 32.0°F', () => {

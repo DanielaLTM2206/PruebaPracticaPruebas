@@ -27,4 +27,3 @@ describe('movingAverage', () => {
 		expect(() => movingAverage([1,2,3], 2.5)).toThrow(RangeError);
 	});
 });
-const movingAverage = require('../src/utils/movingAverage');
