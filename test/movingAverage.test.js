@@ -2,7 +2,7 @@ const movingAverage = require('../src/utils/movingAverage');
 
 describe('movingAverage', () => {
 	it('calcula la media móvil simple para [10,20,30,40] con ventana 2', () => {
-		expect(movingAverage([10,20,30,40], 2)).toEqual([15.00, 25.00, 35.00]);
+		expect(movingAverage([10,20,30,40], 2)).toEqual([-15.00, 25.00, 35.00]);
 	});
 
 	it('calcula la media móvil simple para [1,2,3] con ventana 3', () => {

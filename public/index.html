@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+  <title>Perfil — Clima & Conversión</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/12.1.0/firebase-app-compat.js"></script>
@@ -23,67 +23,117 @@
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
+    <style>
+      body { background: #ECEFF1; color: #222; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+      .container { background: white; max-width: 500px; margin: 40px auto; padding: 32px 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); text-align: center; }
+      header, footer { background: #039be5; color: white; padding: 16px 0; border-radius: 8px 8px 0 0; }
+      h1 { font-size: 2rem; margin-bottom: 8px; }
+      h2 { color: #ffa100; margin-top: 0; }
+      ul { list-style: none; padding: 0; }
+      li { margin-bottom: 8px; }
+      .section { margin: 24px 0; }
+      label { display: block; margin: 12px 0 4px; }
+      input, textarea { width: 80%; padding: 8px; margin-bottom: 12px; border-radius: 4px; border: 1px solid #ccc; }
+      button { background: #ffa100; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-top: 8px; }
+      button:hover { background: #039be5; }
+      .result { margin-top: 8px; font-weight: bold; color: #039be5; }
+      footer { border-radius: 0 0 8px 8px; font-size: 0.9rem; }
     </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <div class="container">
+      <header>
+        <h1>Perfil — Clima & Conversión</h1>
+      </header>
+      <section class="section">
+        <h2>Daniela Lissette Tituaña Moreno  </h2>
+        <p><strong>NRC:</strong>23311<br>
+        <strong>Correo:</strong> dtituana@espe.edu.ec</p>
+        <p>Soy estudiante de la ESPE, apasionada por la tecnología y el desarrollo web. Me gusta aprender cosas nuevas y trabajar en equipo. Mi meta es contribuir con proyectos útiles y de impacto social, de igual manera adquirir experiencia en el mundo laboral.</p>
+        <ul>
+          <li>Mido 1.68</li>
+          <li>Practico Baloncesto</li>
+          <li>Odio las peliculas tristes</li>
+        </ul>
+      </section>
+      <section class="section">
+        <h2>Prueba las funciones</h2>
+        <div>
+          <label for="fInput">Fahrenheit a Celsius</label>
+          <input type="number" id="fInput" placeholder="°F">
+          <button onclick="convertToCelsius()">Convertir</button>
+          <div id="celsiusResult" class="result"></div>
+        </div>
+        <div>
+          <label for="cInput">Celsius a Fahrenheit</label>
+          <input type="number" id="cInput" placeholder="°C">
+          <button onclick="convertToFahrenheit()">Convertir</button>
+          <div id="fahrenheitResult" class="result"></div>
+        </div>
+        <div>
+          <label for="seriesInput">Media móvil (separa números por coma)</label>
+          <input type="text" id="seriesInput" placeholder="Ej: 10,20,30,40">
+          <label for="windowInput">Ventana</label>
+          <input type="number" id="windowInput" min="2" value="2">
+          <button onclick="calcMovingAverage()">Calcular</button>
+          <div id="maResult" class="result"></div>
+        </div>
+      </section>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      function toCelsius(f) {
+        if (!Number.isFinite(f)) throw new TypeError('El valor debe ser un número finito');
+        return Number(((f - 32) * 5 / 9).toFixed(1));
+      }
+      function toFarenheit(c) {
+        if (!Number.isFinite(c)) throw new TypeError('El valor debe ser un número finito');
+        return Number(((c * 9 / 5) + 32).toFixed(1));
+      }
+      function movingAverage(series, window) {
+        if (!Array.isArray(series) || series.some(x => !Number.isFinite(x))) {
+          throw new TypeError('La serie debe ser un arreglo de números finitos');
         }
-      });
+        if (!Number.isInteger(window) || window < 2 || window > series.length) {
+          throw new RangeError('La ventana debe ser un entero entre 2 y el tamaño de la serie');
+        }
+        const result = [];
+        for (let i = 0; i <= series.length - window; i++) {
+          const avg = series.slice(i, i + window).reduce((a, b) => a + b, 0) / window;
+          result.push(Number(avg.toFixed(2)));
+        }
+        return result;
+      }
+
+      function convertToCelsius() {
+        const f = parseFloat(document.getElementById('fInput').value);
+        try {
+          const res = toCelsius(f);
+          document.getElementById('celsiusResult').textContent = `${f}°F = ${res}°C`;
+        } catch (e) {
+          document.getElementById('celsiusResult').textContent = e.message;
+        }
+      }
+      function convertToFahrenheit() {
+        const c = parseFloat(document.getElementById('cInput').value);
+        try {
+          const res = toFarenheit(c);
+          document.getElementById('fahrenheitResult').textContent = `${c}°C = ${res}°F`;
+        } catch (e) {
+          document.getElementById('fahrenheitResult').textContent = e.message;
+        }
+      }
+      function calcMovingAverage() {
+        const seriesStr = document.getElementById('seriesInput').value;
+        const window = parseInt(document.getElementById('windowInput').value);
+        try {
+          const series = seriesStr.split(',').map(x => parseFloat(x.trim())).filter(x => x !== '' && !isNaN(x));
+          const res = movingAverage(series, window);
+          document.getElementById('maResult').textContent = `Resultado: [${res.join(', ')}]`;
+        } catch (e) {
+          document.getElementById('maResult').textContent = e.message;
+        }
+      }
     </script>
   </body>
 </html>
